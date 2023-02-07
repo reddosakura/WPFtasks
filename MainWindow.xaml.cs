@@ -97,7 +97,9 @@ namespace WPF
                 (sender as Button).Content = marker;
                 List<Button> btns = new List<Button>() { btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9 };
                 emptyBtns.Remove((sender as Button).Name);
+                SimulateGame(btns);
                 List<List<Button>> matrix = new List<List<Button>>() { new List<Button> {btn1, btn2, btn3}, new List<Button> { btn4, btn5, btn6 }, new List<Button> { btn7, btn8, btn9 } };
+
                 if (WhoWin(matrix) == "X") 
                 {
                     MessageBox.Show("Победил Х");
@@ -113,10 +115,6 @@ namespace WPF
                     {
                         b.IsEnabled = false;
                     }
-                }
-                else
-                {
-                    SimulateGame(btns);
                 }
                 
             }
