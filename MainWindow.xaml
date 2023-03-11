@@ -1,0 +1,77 @@
+﻿<Window x:Class="task3.MainWindow"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:task3"
+        mc:Ignorable="d"
+    Title="MainWindow" Height="527" Width="558">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="43*"/>
+            <RowDefinition Height="345*"/>
+            <RowDefinition Height="37*"/>
+            <RowDefinition Height="53*"/>
+            <RowDefinition Height="33*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="77*"/>
+            <ColumnDefinition Width="137*"/>
+            <ColumnDefinition Width="125*"/>
+            <ColumnDefinition Width="82*"/>
+            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="57*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="playBtn"
+  Style="{StaticResource MaterialDesignIconButton}"
+  ToolTip="MaterialDesignIconButton"
+  Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+  Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand" Height="48" Width="48" Click="playBtn_Click">
+            <materialDesign:PackIcon
+    Kind="Play" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+        </Button>
+        <Slider x:Name="volSlider" Grid.Row="4" Grid.Column="4" Minimum="0" Maximum="1" Grid.ColumnSpan="2" VerticalAlignment="Center" ValueChanged="Slider_ValueChanged" />
+        <Slider x:Name="musicSlider"
+  Value="35" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="4" VerticalAlignment="Center" Height="20" ValueChanged="duration_ValueChanged" />
+        <Button x:Name="prevBtn"
+  Style="{StaticResource MaterialDesignOutlinedButton}"
+  Content="prev"
+  Grid.Row="4" Grid.Column="1" Click="prevSong" />
+        <Button x:Name="nextBtn"
+  Style="{StaticResource MaterialDesignOutlinedButton}"
+  Content="next"
+  Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="1" RenderTransformOrigin="0.5,0.5" Margin="0,1,0,0" Click="nextSong" Cursor="Hand" >
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <RepeatButton x:Name="repeatBtn" Content="REPEAT" Grid.Column="3" Grid.Row="4" RenderTransformOrigin="0.5,0.5" Cursor="Hand" Margin="0,1,0,0" Click="repeatBtn_Click" >
+            <RepeatButton.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </RepeatButton.RenderTransform>
+        </RepeatButton>
+        <Button
+  Style="{StaticResource MaterialDesignRaisedDarkButton}"
+  Content="OPEN" Grid.Column="2" Margin="0,6,0,5" Click="OpenFiles"/>
+        <ListBox x:Name="playlist"
+  IsEnabled="{Binding IsChecked, ElementName=EnableListBox}" Grid.ColumnSpan="6" Margin="0,10,0,0" Grid.Row="1" SelectionChanged="playlist_SelectionChanged"/>
+        <TextBlock x:Name="songName" Grid.Row="2" TextWrapping="Wrap" Text="Choose song" Grid.ColumnSpan="6" Margin="0,5,0,0"/>
+        <Button x:Name="mixBtn"
+  Style="{StaticResource MaterialDesignRaisedDarkButton}"
+  Content="MIX"
+  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Grid.Row="4" Margin="0,1,0,0" Click="mixBtn_Click" />
+        <MediaElement x:Name="mediaEl" Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="0,19,0,0" Grid.RowSpan="3" Grid.Row="2" VerticalAlignment="Top" Width="100" LoadedBehavior="Manual" MediaOpened="media_MediaOpened"/>
+        <TextBlock x:Name="timeDur" Grid.Column="5" Margin="0,3,0,0" Grid.Row="3" TextWrapping="Wrap" Text=""/>
+    </Grid>
+</Window>
